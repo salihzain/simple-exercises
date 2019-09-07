@@ -102,6 +102,21 @@ func checkHoriz(board [3][3]int, player int) bool {
 }
 
 func checkVert(board [3][3]int, player int) bool {
+	for j := 0; j < len(board); j++ {
+		sum := 0
+		for i := 0; i < len(board); i++ {
+			if board[i][j] == player {
+				sum += player
+			}
+		}
+		if sum == (len(board) * player) {
+			return true
+		}
+	}
+	return false
+}
+
+func checkDiagonal(board [3][3]int, player int) bool {
 	//left
 	sum := 0
 	for i := 0; i < len(board); i++ {
@@ -123,21 +138,6 @@ func checkVert(board [3][3]int, player int) bool {
 		return true
 	}
 
-	return false
-}
-
-func checkDiagonal(board [3][3]int, player int) bool {
-	for j := 0; j < len(board); j++ {
-		sum := 0
-		for i := 0; i < len(board); i++ {
-			if board[i][j] == player {
-				sum += player
-			}
-		}
-		if sum == (len(board) * player) {
-			return true
-		}
-	}
 	return false
 }
 
