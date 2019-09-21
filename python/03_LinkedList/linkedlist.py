@@ -4,11 +4,11 @@ class Node:
         self.next = None
 
     def __str__(self):
-        return "{}".format(self.data) 
+        return "{}".format(self.data)
 
 class LinkedList:
     def __init__(self):
-        self.size = 0 
+        self.size = 0
         self.head = None
 
     def add(self, data):
@@ -43,14 +43,14 @@ class LinkedList:
         if index <0 or index >= self.size:
             return None
 
-        ctr = 0 
+        ctr = 0
         nd = self.head
 
         while ctr != index:
             nd = nd.next
             ctr += 1
         return nd.data
-            
+
     def index_of(self, element):
         if not self.contains(element):
             return -1
@@ -60,7 +60,7 @@ class LinkedList:
 
         while nd:
             if nd.data == element:
-                return ctr 
+                return ctr
             nd = nd.next
             ctr += 1
 
@@ -72,13 +72,13 @@ class LinkedList:
     def remove_index(self, index):
         """removes and returns element at given index"""
         if index < 0 or index >= self.size:
-            return None 
+            return None
 
         if index == 0:
             temp = self.head
             self.head = self.head.next
             self.size -= 1
-            return temp 
+            return temp
 
         ctr = 0
         nd = self.head
