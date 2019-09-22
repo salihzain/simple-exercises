@@ -5,8 +5,10 @@ class TicTacToe:
     def __init__(self, dimension):
         self.dim = dimension
         self.board = []
+
         for i in range(0, dimension):
             self.board.append([0]*dimension)
+
         self.run()
 
     def print_board(self):
@@ -24,12 +26,15 @@ class TicTacToe:
         # if move is invalid
         if player != TicTacToe.X and player != TicTacToe.O:
             return False
+
         # if i or j values are invalid
         if i >= self.dim or j >= self.dim or i < 0 or j < 0:
             return False
+
         # if there is a X or O already placed
         if self.board[i][j] != 0:
             return False
+
         # place move
         self.board[i][j] = player
         return True
@@ -47,18 +52,22 @@ class TicTacToe:
         # check horizontal
         for i in self.board:
             sum = 0
+
             for j in i:
                 if j == player:
                     sum += player
+
             if sum == (self.dim * player):
                 return True
 
         # check vertical
         for j in range(0, self.dim):
             sum = 0
+
             for i in range(0, self.dim):
                 if self.board[i][j] == player:
                     sum += player
+
             if sum == (self.dim * player):
                 return True
 
@@ -67,6 +76,7 @@ class TicTacToe:
         for i in range(0, self.dim):
             if self.board[i][i] == player:
                 sum += player
+
         if sum == (self.dim * player):
             return True
 
@@ -75,6 +85,7 @@ class TicTacToe:
         for i in range(0, self.dim):
             if self.board[i][self.dim-i-1] == player:
                 sum += player
+
         if sum == (self.dim * player):
             return True
 
@@ -85,15 +96,18 @@ class TicTacToe:
         print("Game started")
         player = 1
         winner = 0
+
         while True:
             self.print_board()
             if player == TicTacToe.X:
                 print("X's turn")
             else:
                 print("O's turn")
+
             # read move coordinates
             i = int(input("Enter i value: "))
             j = int(input("Enter j value: "))
+
             # place the move
             valid = self.place_move(player, i, j)
             while not valid:
@@ -102,11 +116,14 @@ class TicTacToe:
                 i = int(input("Enter i value: "))
                 j = int(input("Enter j value: "))
                 valid = self.place_move(player, i, j)
+
             if self.check_full():
                 break
+
             if self.check_terminal(player):
                 winner = player
                 break
+
             # set next player
             if player % 2 == 1:
                 player = TicTacToe.O
@@ -114,6 +131,7 @@ class TicTacToe:
                 player = TicTacToe.X
 
         self.print_board()
+
         if winner == 0:
             print("Draw!")
         elif winner == TicTacToe.X:
